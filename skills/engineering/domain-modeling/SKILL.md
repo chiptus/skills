@@ -9,6 +9,10 @@ Actively build and sharpen the project's domain model as you design. This is the
 
 ## File structure
 
+### External docs location
+
+Before touching any paths below, check `$(git rev-parse --git-common-dir)/grill-context` (worktree-safe — see [domain.md](../setup-matt-pocock-skills/domain.md) for why). If it exists, its contents (a trimmed path) replace the repo root for everything below — layout unchanged, only the root moves. Read-only: this skill never writes the pointer file.
+
 Most repos have a single context:
 
 ```
