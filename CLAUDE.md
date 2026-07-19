@@ -1,4 +1,4 @@
-Skills are organized into bucket folders under `skills/`:
+Skills are organized into bucket folders under `skills/` based on matt pocock's skills with my own changes:
 
 - `engineering/` — daily code work
 - `productivity/` — daily non-code workflow tools
@@ -6,6 +6,7 @@ Skills are organized into bucket folders under `skills/`:
 - `personal/` — tied to my own setup, not promoted
 - `in-progress/` — drafts not yet ready to ship
 - `deprecated/` — no longer used
+- `chiptus/` - my own skills
 
 Every skill in `engineering/` or `productivity/` (the **promoted** buckets) must have a reference in the top-level `README.md` and an entry in `.claude-plugin/plugin.json`'s `skills` array (the Claude Code plugin ships exactly the promoted set). Skills in `misc/`, `personal/`, `in-progress/`, and `deprecated/` must not appear in either.
 
