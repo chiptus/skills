@@ -60,6 +60,14 @@ The defaults are the five canonical roles, each label string equal to its name: 
 
 Offer **multi-context** — a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files — only when exploration found monorepo signals. Then confirm which layout they want.
 
+**Section C — docs location.**
+Then ask where these files should physically live:
+
+> Explainer: In-repo docs show up as PR noise and get stranded per-worktree under `git worktree`. The alternative keeps only a pointer file in git's shared dir (`$(git rev-parse --git-common-dir)/grill-context`, worktree-safe) pointing at a docs directory outside the repo — same layout, different root.
+
+- **In-repo** (default) — no pointer file.
+- **External** — get/propose an absolute path, create it if missing, write it (trimmed, nothing else) to `$(git rev-parse --git-common-dir)/grill-context`.
+
 ### 3. Confirm and edit
 
 Show the user a draft of:
