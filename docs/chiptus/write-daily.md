@@ -1,14 +1,14 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=write-daily
+npx skills add chiptus/skills --skill=write-daily
 ```
 
 ```bash
 npx skills update write-daily
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/chiptus/write-daily)
+[Source](https://github.com/chiptus/skills/tree/main/skills/chiptus/write-daily)
 
 ## What it does
 

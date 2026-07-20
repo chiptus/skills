@@ -1,14 +1,14 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=rfc-writer
+npx skills add chiptus/skills --skill=rfc-writer
 ```
 
 ```bash
 npx skills update rfc-writer
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/chiptus/rfc-writer)
+[Source](https://github.com/chiptus/skills/tree/main/skills/chiptus/rfc-writer)
 
 ## What it does
 

@@ -8,9 +8,9 @@
   </a>
 </p>
 
-# Skills For Real Engineers
+# Skills For Chiptus
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
+This is a fork of [Matt Pocock](https://www.aihero.dev)'s [agent skills repo](https://github.com/mattpocock/skills), changed to fit my own use. I recommend using [Matt's skills](https://github.com/mattpocock/skills) directly unless you're sure you need mine — everything here is subject to change per my own needs.
 
 My agent skills that I use every day to do real engineering - not vibe coding.
 
@@ -18,7 +18,7 @@ Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit tr
 
 These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.
 
-If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:
+If you want to keep up with Matt Pocock's own changes to these skills, and any new ones he creates, you can join ~60,000 other devs on his newsletter:
 
 [Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
 
@@ -27,7 +27,7 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 1. Run the skills.sh installer:
 
 ```bash
-npx skills@latest add mattpocock/skills
+npx skills@latest add chiptus/skills
 ```
 
 2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills`**.
@@ -41,30 +41,30 @@ npx skills@latest add mattpocock/skills
 
 ## Install as a Claude Code plugin
 
-Prefer a plug-and-play install you don't maintain by hand? These skills also ship as a native [Claude Code plugin](https://code.claude.com/docs/en/plugins). Instead of copying editable files into your repo, the plugin installs the whole skill set as a managed bundle that updates when I ship a new version — you subscribe rather than fork.
+Prefer a plug-and-play install you don't maintain by hand? These skills also ship as a native [Claude Code plugin](https://code.claude.com/docs/en/plugins). Instead of copying editable files into your repo, the plugin installs the whole skill set as a managed bundle that updates when a new version ships — you subscribe rather than fork.
 
 Inside Claude Code:
 
 ```
-/plugin marketplace add mattpocock/skills
-/plugin install mattpocock-skills@mattpocock
+/plugin marketplace add chiptus/skills
+/plugin install chiptus-skills@chiptus
 ```
 
 Or from your shell:
 
 ```bash
-claude plugin marketplace add mattpocock/skills
-claude plugin install mattpocock-skills@mattpocock
+claude plugin marketplace add chiptus/skills
+claude plugin install chiptus-skills@chiptus
 ```
 
 Then run `/setup-matt-pocock-skills` once per repo, exactly as in the quickstart above.
 
 Two ways to install, two philosophies:
 
-- **[skills.sh](https://skills.sh/mattpocock/skills)** copies the skills into your project so you can hack on them and make them your own.
-- **The plugin** keeps them as a read-only, always-current bundle you don't edit — best when you just want my set to work and follow along as it evolves.
+- **[skills.sh](https://skills.sh/chiptus/skills)** copies the skills into your project so you can hack on them and make them your own.
+- **The plugin** keeps them as a read-only, always-current bundle you don't edit — best when you just want this set to work and follow along as it evolves.
 
-> Using Codex or another agent? The [skills.sh installer](https://skills.sh/mattpocock/skills) already installs these skills into Codex and other Agent-Skills-standard harnesses today. A native Codex plugin is on the roadmap — see [`.agents/adr/0002-ship-as-a-claude-code-plugin.md`](./.agents/adr/0002-ship-as-a-claude-code-plugin.md).
+> Using Codex or another agent? The [skills.sh installer](https://skills.sh/chiptus/skills) already installs these skills into Codex and other Agent-Skills-standard harnesses today. A native Codex plugin is on the roadmap — see [`.agents/adr/0002-ship-as-a-claude-code-plugin.md`](./.agents/adr/0002-ship-as-a-claude-code-plugin.md).
 
 ## Why These Skills Exist
 
