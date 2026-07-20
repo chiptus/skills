@@ -1,14 +1,14 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=what-to-do
+npx skills add chiptus/skills --skill=what-to-do
 ```
 
 ```bash
 npx skills update what-to-do
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/chiptus/what-to-do)
+[Source](https://github.com/chiptus/skills/tree/main/skills/chiptus/what-to-do)
 
 ## What it does
 

@@ -1,14 +1,14 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=create-pr
+npx skills add chiptus/skills --skill=create-pr
 ```
 
 ```bash
 npx skills update create-pr
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/chiptus/create-pr)
+[Source](https://github.com/chiptus/skills/tree/main/skills/chiptus/create-pr)
 
 ## What it does
 

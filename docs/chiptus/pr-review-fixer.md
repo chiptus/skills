@@ -1,14 +1,14 @@
 Quickstart:
 
 ```bash
-npx skills add mattpocock/skills --skill=pr-review-fixer
+npx skills add chiptus/skills --skill=pr-review-fixer
 ```
 
 ```bash
 npx skills update pr-review-fixer
 ```
 
-[Source](https://github.com/mattpocock/skills/tree/main/skills/chiptus/pr-review-fixer)
+[Source](https://github.com/chiptus/skills/tree/main/skills/chiptus/pr-review-fixer)
 
 ## What it does
 
