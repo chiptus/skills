@@ -1,0 +1,3 @@
+interface:
+  display_name: "Write Daily"
+  short_description: "Log today's work to the personal weekly log"
