@@ -1,0 +1,3 @@
+interface:
+  display_name: "RFC Writer"
+  short_description: "Draft an RFC for a proposed change"

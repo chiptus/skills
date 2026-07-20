@@ -43,6 +43,11 @@
     "./skills/productivity/teach",
     "./skills/productivity/to-questionnaire",
     "./skills/productivity/wait-what",
-    "./skills/productivity/writing-for-agents"
+    "./skills/productivity/writing-for-agents",
+    "./skills/chiptus/create-pr",
+    "./skills/chiptus/pr-review-fixer",
+    "./skills/chiptus/rfc-writer",
+    "./skills/chiptus/what-to-do",
+    "./skills/chiptus/write-daily"
   ]
 }

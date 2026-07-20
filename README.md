@@ -229,3 +229,15 @@ General workflow tools, not code-specific.
 
 - **[grilling](./skills/productivity/grilling/SKILL.md)**: Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. The reusable interview primitive behind `grill-me`, `grill-with-docs`, `triage`, `wayfinder` and `improve-codebase-architecture`.
 - **[writing-for-agents](./skills/productivity/writing-for-agents/SKILL.md)**: Writing documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer.
+
+### Chiptus
+
+My own skills, kept in their own bucket so this repo stays easy to rebase over Matt's upstream.
+
+**Model-invoked**
+
+- **[create-pr](./skills/chiptus/create-pr/SKILL.md)**: Open a pull request with a commitlint-compliant title, a short description, and manual verification steps.
+- **[pr-review-fixer](./skills/chiptus/pr-review-fixer/SKILL.md)**: Fetch unresolved PR review comments, analyze and propose fixes for each, then implement whichever ones you approve.
+- **[rfc-writer](./skills/chiptus/rfc-writer/SKILL.md)**: Gather branch context and interview the author to produce a complete RFC in the Portainer RFC format.
+- **[what-to-do](./skills/chiptus/what-to-do/SKILL.md)**: Show today's planned tasks and this week's goals from the personal work log.
+- **[write-daily](./skills/chiptus/write-daily/SKILL.md)**: Add a daily work entry to the personal weekly log, pre-populated from git activity.
