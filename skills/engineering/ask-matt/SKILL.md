@@ -72,6 +72,8 @@ Off the main flow entirely.
 - **`/research`** — delegate reading legwork to a **background agent**: it investigates a question against **primary sources**, then leaves a cited Markdown file in the repo. Keep working while it reads. The file it produces is something to take *into* the main flow at `/grill-with-docs` — research feeds the thinking, it doesn't replace it.
 - **`/teach`** — learn a concept over multiple sessions, using the current directory as a stateful workspace.
 - **`/writing-great-skills`** — reference for writing and editing skills well.
+- **`/create-pr`** — open a pull request with a commitlint-compliant title, a short description, and reviewer-testable verification steps.
+- **`/pr-review-fixer`** — fetch unresolved PR review comments, propose fixes for each, then implement whichever ones you approve.
 
 ## Precondition
 
