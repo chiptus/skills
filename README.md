@@ -8,9 +8,9 @@
   </a>
 </p>
 
-# Skills For Real Engineers
+# Skills For Chiptus
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
+This is a fork of [Matt Pocock](https://www.aihero.dev)'s [agent skills repo](https://github.com/mattpocock/skills), changed to fit my own use. I recommend using [Matt's skills](https://github.com/mattpocock/skills) directly unless you're sure you need mine — everything here is subject to change per my own needs.
 
 My agent skills that I use every day to do real engineering - not vibe coding.
 
@@ -18,13 +18,13 @@ Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit tr
 
 These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.
 
-If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:
+If you want to keep up with Matt Pocock's own changes to these skills, and any new ones he creates, you can join ~60,000 other devs on his newsletter:
 
 [Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
 
 ## Installation (30-second setup)
 
-Two ways in, two philosophies. **The [Claude Code plugin](https://code.claude.com/docs/en/plugins)** installs the whole set as a managed, read-only bundle that updates when I ship, so you subscribe rather than fork. **[skills.sh](https://skills.sh/mattpocock/skills)** copies editable skill files into your project, so you can hack on them and make them your own. Pick one: installing both leaves you with every skill twice.
+Two ways in, two philosophies. **The [Claude Code plugin](https://code.claude.com/docs/en/plugins)** installs the whole set as a managed, read-only bundle that updates when I ship, so you subscribe rather than fork. **[skills.sh](https://skills.sh/chiptus/skills)** copies editable skill files into your project, so you can hack on them and make them your own. Pick one: installing both leaves you with every skill twice.
 
 ### 1. Get the skills
 
@@ -32,16 +32,18 @@ Two ways in, two philosophies. **The [Claude Code plugin](https://code.claude.co
 <summary><strong>Claude Code</strong></summary>
 
 ```bash
-claude plugins install mattpocock-skills
+claude plugin marketplace add chiptus/skills
+claude plugin install chiptus-skills@chiptus
 ```
 
 Or, from inside a session:
 
 ```
-/plugin install mattpocock-skills
+/plugin marketplace add chiptus/skills
+/plugin install chiptus-skills@chiptus
 ```
 
-It's in Claude Code's official marketplace, so there's nothing to add first, and updates arrive automatically.
+It's not in Claude Code's official marketplace, so the marketplace add step runs once; after that, updates arrive automatically.
 
 </details>
 
@@ -49,7 +51,7 @@ It's in Claude Code's official marketplace, so there's nothing to add first, and
 <summary><strong>Codex, and other agents</strong></summary>
 
 ```bash
-npx skills@latest add mattpocock/skills
+npx skills@latest add chiptus/skills
 ```
 
 Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take, so make sure `setup-matt-pocock-skills` is one of them.**
@@ -64,7 +66,7 @@ A native Codex plugin is on the roadmap (see [`.agents/adr/0002-ship-as-a-claude
 Use the same installer, on any agent, including Claude Code:
 
 ```bash
-npx skills@latest add mattpocock/skills
+npx skills@latest add chiptus/skills
 ```
 
 It writes the skills into your repo as ordinary files you own and can edit. Nothing updates behind your back; pull my latest changes when you want them with `npx skills update`.
