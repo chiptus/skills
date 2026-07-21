@@ -7,6 +7,7 @@ description: >
   PR comments", "address review feedback", "fix review comments", "what comments are
   on this PR", "respond to code review", or similar. Trigger even if they just say
   "let's fix the PR comments" or "what did reviewers say".
+allowed-tools: Bash(gh pr view *) Bash(gh api graphql *) Bash(gh api repos/*/issues/*/comments) Bash(gh pr comment *)
 ---
 
 # PR Review Comment Fixer
@@ -142,14 +143,14 @@ For each selected comment:
 - If `small` or `medium`: implement the fix now. After editing, confirm with a brief
   "Fixed #N — [what changed]" note. Then resolve the thread:
   ```bash
-  gh pr-review threads resolve --pr <pr-id> --thread-id <id>
+  gh api graphql -f query='mutation { resolveReviewThread(input: {threadId: "<thread-id>"}) { thread { id } } }'
   ```
   (Only resolve inline threads; top-level review bodies and issue comments don't have
   a thread ID to resolve.)
 - If `large`: don't attempt it now. Say: "Comment N is too large for this session —
   suggest tackling it in a dedicated follow-up." Do not resolve the thread.
 - If the comment is a **question**: no code change needed. Explain the answer
-  (optionally as a reply via `gh pr-review review --add-comment` if the user wants
+  (optionally as a reply via `gh pr comment --body ...` if the user wants
   to post it, but don't do this unless asked). Resolve the thread after answering.
 
 After all fixes are applied, give a short summary of what was changed and what was
