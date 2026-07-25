@@ -6,6 +6,7 @@ My own skills, kept in their own bucket — separate from Matt Pocock's `enginee
 
 Model- or user-reachable (rich trigger phrasing so the model can reach for them).
 
+- **[continue-pr](./continue-pr/SKILL.md)** — Resume work on an existing PR branch by checking out its branch, reading unresolved review comments, and closing gaps against the issue's acceptance criteria.
 - **[create-pr](./create-pr/SKILL.md)** — Open a pull request with a commitlint-compliant title, a short description, and manual verification steps.
 - **[pr-review-fixer](./pr-review-fixer/SKILL.md)** — Fetch unresolved PR review comments, analyze and propose fixes for each, then implement whichever ones you approve.
 - **[rfc-writer](./rfc-writer/SKILL.md)** — Gather branch context and interview the author to produce a complete RFC in the Portainer RFC format.

@@ -21,6 +21,7 @@
   "skills": [
     "./skills/engineering/setup-matt-pocock-skills",
     "./skills/engineering/domain-modeling",
+    "./skills/chiptus/continue-pr",
     "./skills/chiptus/create-pr",
     "./skills/chiptus/pr-review-fixer",
     "./skills/chiptus/rfc-writer",
