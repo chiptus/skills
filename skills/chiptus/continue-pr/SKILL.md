@@ -1,6 +1,7 @@
 ---
 name: continue-pr
 description: "Resume work on an existing PR branch — an issue is already in progress with an open PR, and the ask is to pick it back up rather than start fresh. Use when the user gives a branch + PR and says to continue, keep working, or work on the PR (not a new branch)."
+allowed-tools: Bash(git fetch:*), Bash(git checkout:*), Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git push:*), github__pull_request_read, github__add_reply_to_pull_request_comment, github__resolve_review_thread
 ---
 
 # Continue PR
