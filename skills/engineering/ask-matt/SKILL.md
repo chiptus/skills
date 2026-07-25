@@ -74,6 +74,7 @@ Off the main flow entirely.
 - **`/writing-great-skills`** — reference for writing and editing skills well.
 - **`/create-pr`** — open a pull request with a commitlint-compliant title, a short description, and reviewer-testable verification steps.
 - **`/pr-review-fixer`** — fetch unresolved PR review comments, propose fixes for each, then implement whichever ones you approve.
+- **`/continue-pr`** — resume work on an existing PR branch: check out its branch (never a new one), work unresolved review comments as the task list, and verify acceptance criteria against what's already committed before doing new work.
 
 ## Precondition
 
