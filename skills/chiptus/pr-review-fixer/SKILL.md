@@ -17,7 +17,7 @@ whatever the user approves.
 
 ## Phase 1 — Fetch threads
 
-Run `scripts/fetch-review-threads.sh`. It resolves the current PR, fetches review
+Run !`scripts/fetch-review-threads.sh`. It resolves the current PR, fetches review
 threads, review bodies, and issue comments, and filters out resolved threads and
 empty bodies with `jq` before any of it reaches you — you only ever see live,
 unresolved feedback. Output is `{threads, reviews, issueComments}`.
