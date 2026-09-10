@@ -3,6 +3,11 @@
 # Usage: resolve-thread.sh <thread-id>
 set -euo pipefail
 
+if [ $# -ne 1 ]; then
+  echo "Usage: resolve-thread.sh <thread-id>" >&2
+  exit 1
+fi
+
 thread_id="$1"
 
 gh api graphql -f query='

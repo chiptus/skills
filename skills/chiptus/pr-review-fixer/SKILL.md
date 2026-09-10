@@ -2,7 +2,7 @@
 name: pr-review-fixer
 description: >
   Fetch all unresolved PR review comments for the current branch, analyze each one,
-  and plan concrete fixes. Then let the user choose what to address in free text —
+  and plan concrete fixes. Then let the user choose what to address in free text,
   and implement the selected fixes. Use this skill whenever the user asks to "review
   PR comments", "address review feedback", "fix review comments", "what comments are
   on this PR", "respond to code review", or similar. Trigger even if they just say
@@ -15,16 +15,16 @@ allowed-tools: Bash(scripts/fetch-review-threads.sh) Bash(scripts/resolve-thread
 Fetch unresolved PR review threads, analyze each one, propose fixes, then implement
 whatever the user approves.
 
-## Phase 1 — Fetch threads
+## Phase 1: Fetch threads
 
 Run !`scripts/fetch-review-threads.sh`. It resolves the current PR, fetches review
 threads, review bodies, and issue comments, and filters out resolved threads and
-empty bodies with `jq` before any of it reaches you — you only ever see live,
+empty bodies with `jq` before any of it reaches you: you only ever see live,
 unresolved feedback. Output is `{threads, reviews, issueComments}`.
 
 If all three arrays are empty, tell the user and stop.
 
-## Phase 2 — Understand each comment
+## Phase 2: Understand each comment
 
 For each unresolved thread:
 
@@ -32,31 +32,31 @@ For each unresolved thread:
   thread has no `line` (file-level comment), read the top of the file or the section
   being discussed.
 - Understand what the reviewer is actually asking. Categorize by the _intent_, not the
-  grammatical form — "should X be Y?" phrased as a question is still action-required
+  grammatical form: "should X be Y?" phrased as a question is still action-required
   if there is an implied change. Use:
-  - **Action required** — a clear bug, style issue, explicit change request, or any
+  - **Action required**: a clear bug, style issue, explicit change request, or any
     "should X be Y?" that implies a rename/refactor
-  - **Suggestion** — an optional improvement with no clear right/wrong answer
-  - **Question** — only when the reviewer genuinely wants an explanation and no code
+  - **Suggestion**: an optional improvement with no clear right/wrong answer
+  - **Question**: only when the reviewer genuinely wants an explanation and no code
     change is implied (rare)
-  - **Revert** — reviewer explicitly says "revert", "remove", or "this is out of scope"
+  - **Revert**: reviewer explicitly says "revert", "remove", or "this is out of scope"
 - Draft a concrete, specific fix for action-required and revert items. For questions,
   draft a brief answer. For suggestions, note whether it's worth doing.
 - Estimate size: `small` (a few lines), `medium` (one function/file), `large`
   (multi-file or requires new design).
 
-## Phase 3 — Present the analysis
+## Phase 3: Present the analysis
 
-Before listing, look for **related cascades** — comments that all stem from the same
+Before listing, look for **related cascades**: comments that all stem from the same
 root change (e.g. an API refactor and all its call-site follow-ons). Group these
-under a shared heading and give them a single number (e.g. "Group 3 — revert
+under a shared heading and give them a single number (e.g. "Group 3: revert
 useSearch API change (5 files)") so the user can approve the whole cascade as one
 decision.
 
 Output a numbered list. Standalone items:
 
 ```
-## Comment N — <type> | <size>
+## Comment N: <type> | <size>
 **File:** path/to/file.ts (line X)
 **Reviewer:** @username
 
@@ -69,7 +69,7 @@ Output a numbered list. Standalone items:
 Cascade groups:
 
 ```
-## Group N — <theme> | <size> (<M> files)
+## Group N: <theme> | <size> (<M> files)
 **Reviewer:** @username
 
 > <quote from the root comment>
@@ -85,21 +85,21 @@ After the list, ask:
 > "Which of these would you like me to address? (e.g. "fix 1, 2, 4" or "all" or
 > "skip 3, fix the rest") For large ones I'll flag if they need a separate session."
 
-## Phase 4 — Implement
+## Phase 4: Implement
 
-Parse the user's free-text reply to determine which comments to fix. Be flexible —
+Parse the user's free-text reply to determine which comments to fix. Be flexible:
 "do everything", "just 1 and 3", "all except 5", "skip the big ones" are all valid.
 
 For each selected comment:
 
 - If `small` or `medium`: implement the fix now. After editing, confirm with a brief
-  "Fixed #N — [what changed]" note. Then resolve the thread:
+  "Fixed #N: [what changed]" note. Then resolve the thread:
   ```bash
   scripts/resolve-thread.sh <thread-id>
   ```
   (Only resolve inline threads; top-level review bodies and issue comments don't have
   a thread ID to resolve.)
-- If `large`: don't attempt it now. Say: "Comment N is too large for this session —
+- If `large`: don't attempt it now. Say: "Comment N is too large for this session:
   suggest tackling it in a dedicated follow-up." Do not resolve the thread.
 - If the comment is a **question**: no code change needed. Explain the answer
   (optionally as a reply via `gh pr comment --body ...` if the user wants

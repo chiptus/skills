@@ -38,7 +38,7 @@ threads_and_reviews=$(gh api graphql -f query='
   }')
 
 issue_comments=$(gh api "repos/$owner/$repo/issues/$number/comments" \
-  --jq '[.[] | {author: .user.login, body, created_at}]')
+  --jq '[.[] | {author: .user.login, body, createdAt: .created_at}]')
 
 jq -n --argjson tr "$threads_and_reviews" --argjson ic "$issue_comments" \
   '{threads: $tr.threads, reviews: $tr.reviews, issueComments: $ic}'
