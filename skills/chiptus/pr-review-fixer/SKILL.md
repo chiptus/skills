@@ -7,7 +7,7 @@ description: >
   PR comments", "address review feedback", "fix review comments", "what comments are
   on this PR", "respond to code review", or similar. Trigger even if they just say
   "let's fix the PR comments" or "what did reviewers say".
-allowed-tools: Bash(scripts/fetch-review-threads.sh) Bash(scripts/resolve-thread.sh *) Bash(gh pr comment *)
+allowed-tools: Bash(skills/chiptus/pr-review-fixer/scripts/fetch-review-threads.sh) Bash(skills/chiptus/pr-review-fixer/scripts/resolve-thread.sh *) Bash(gh pr comment *)
 ---
 
 # PR Review Comment Fixer
@@ -17,7 +17,7 @@ whatever the user approves.
 
 ## Phase 1 — Fetch threads
 
-Run !`scripts/fetch-review-threads.sh`. It resolves the current PR, fetches review
+Run !`skills/chiptus/pr-review-fixer/scripts/fetch-review-threads.sh`. It resolves the current PR, fetches review
 threads, review bodies, and issue comments, and filters out resolved threads and
 empty bodies with `jq` before any of it reaches you — you only ever see live,
 unresolved feedback. Output is `{threads, reviews, issueComments}`.
@@ -95,7 +95,7 @@ For each selected comment:
 - If `small` or `medium`: implement the fix now. After editing, confirm with a brief
   "Fixed #N — [what changed]" note. Then resolve the thread:
   ```bash
-  scripts/resolve-thread.sh <thread-id>
+  skills/chiptus/pr-review-fixer/scripts/resolve-thread.sh <thread-id>
   ```
   (Only resolve inline threads; top-level review bodies and issue comments don't have
   a thread ID to resolve.)
