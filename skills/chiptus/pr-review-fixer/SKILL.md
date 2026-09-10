@@ -7,7 +7,7 @@ description: >
   PR comments", "address review feedback", "fix review comments", "what comments are
   on this PR", "respond to code review", or similar. Trigger even if they just say
   "let's fix the PR comments" or "what did reviewers say".
-allowed-tools: Bash(gh pr view *) Bash(gh api graphql *) Bash(gh api repos/*/issues/*/comments) Bash(gh pr comment *)
+allowed-tools: Bash(scripts/fetch-review-threads.sh) Bash(scripts/resolve-thread.sh *) Bash(gh pr comment *)
 ---
 
 # PR Review Comment Fixer
@@ -17,60 +17,12 @@ whatever the user approves.
 
 ## Phase 1 — Fetch threads
 
-1. Get the current PR number and repo:
+Run `scripts/fetch-review-threads.sh`. It resolves the current PR, fetches review
+threads, review bodies, and issue comments, and filters out resolved threads and
+empty bodies with `jq` before any of it reaches you — you only ever see live,
+unresolved feedback. Output is `{threads, reviews, issueComments}`.
 
-   ```bash
-   gh pr view --json number,url,headRefName,baseRefName
-   ```
-
-   Extract `owner` and `repo` from the URL (e.g. `https://github.com/owner/repo/pull/N`).
-
-2. Fetch all review threads and top-level review bodies in one GraphQL call:
-
-   ```bash
-   gh api graphql -f query='
-   {
-     repository(owner:"OWNER", name:"REPO") {
-       pullRequest(number: NUMBER) {
-         reviewThreads(first: 100) {
-           nodes {
-             id
-             isResolved
-             path
-             line
-             startLine
-             comments(first: 10) {
-               nodes {
-                 author { login }
-                 body
-                 createdAt
-               }
-             }
-           }
-         }
-         reviews(first: 50) {
-           nodes {
-             id
-             author { login }
-             body
-             state
-             submittedAt
-           }
-         }
-       }
-     }
-   }'
-   ```
-
-   Also fetch issue-level (non-review) comments:
-
-   ```bash
-   gh api repos/OWNER/REPO/issues/NUMBER/comments
-   ```
-
-3. Filter to unresolved: keep inline threads where `isResolved: false`, top-level
-   review bodies that are non-empty, and issue comments. If nothing remains, tell
-   the user and stop.
+If all three arrays are empty, tell the user and stop.
 
 ## Phase 2 — Understand each comment
 
@@ -143,7 +95,7 @@ For each selected comment:
 - If `small` or `medium`: implement the fix now. After editing, confirm with a brief
   "Fixed #N — [what changed]" note. Then resolve the thread:
   ```bash
-  gh api graphql -f query='mutation { resolveReviewThread(input: {threadId: "<thread-id>"}) { thread { id } } }'
+  scripts/resolve-thread.sh <thread-id>
   ```
   (Only resolve inline threads; top-level review bodies and issue comments don't have
   a thread ID to resolve.)
@@ -158,7 +110,6 @@ deferred.
 
 ## Notes
 
-- Read files before editing — never guess at content.
 - When two comments touch the same function, batch them into one edit.
 - If a fix would break existing tests, mention it before proceeding.
 - Don't create new files unless the fix explicitly requires it.
