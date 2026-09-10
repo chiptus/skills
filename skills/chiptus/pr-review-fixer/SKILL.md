@@ -85,6 +85,9 @@ After the list, ask:
 > "Which of these would you like me to address? (e.g. "fix 1, 2, 4" or "all" or
 > "skip 3, fix the rest") For large ones I'll flag if they need a separate session."
 
+Stop the turn here and wait for the user's reply, even when there is only one comment
+and the fix looks obvious. Do not answer on the user's behalf.
+
 ## Phase 4: Implement
 
 Parse the user's free-text reply to determine which comments to fix. Be flexible:
