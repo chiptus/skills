@@ -10,5 +10,6 @@ Model- or user-reachable (rich trigger phrasing so the model can reach for them)
 - **[create-pr](./create-pr/SKILL.md)** — Open a pull request with a commitlint-compliant title, a short description, and manual verification steps.
 - **[pr-review-fixer](./pr-review-fixer/SKILL.md)** — Fetch unresolved PR review comments, analyze and propose fixes for each, then implement whichever ones you approve.
 - **[rfc-writer](./rfc-writer/SKILL.md)** — Gather branch context and interview the author to produce a complete RFC in the Portainer RFC format.
+- **[setup-chiptus-env](./setup-chiptus-env/SKILL.md)** — Configure a repo end to end: install `setup-matt-pocock-skills` if missing, run it for the issue tracker / triage labels / domain docs, optionally relocate `docs/agents/` to a separate docs repo, then scaffold the autonomic issue pipeline (triage sweep + fix worker Routines) wired to whichever tracker was chosen.
 - **[what-to-do](./what-to-do/SKILL.md)** — Show today's planned tasks and this week's goals from the personal work log at `~/chiptus-repos/notes/dailies/`.
 - **[write-daily](./write-daily/SKILL.md)** — Add a daily work entry to the personal weekly log in `~/chiptus-repos/notes/dailies/`.
