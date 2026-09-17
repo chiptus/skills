@@ -1,18 +1,20 @@
 ---
 name: setup-chiptus-env
-description: "Configure this repo end to end: install setup-matt-pocock-skills if missing (via npx skills), run it for the issue tracker / triage labels / domain docs, optionally relocate docs/agents/ (and domain docs) to a separate docs repo pointed to by an env var — reachable from both local sessions and cloud Routines — then scaffold the autonomic issue pipeline (triage sweep + fix worker Routines) wired to whichever tracker was chosen. Run once per repo before relying on the autonomic pipeline."
+description: "Configure this repo end to end: check setup-matt-pocock-skills is installed (asking the dev to install it if not), run it for the issue tracker / triage labels / domain docs, optionally relocate docs/agents/ (and domain docs) to a separate docs repo pointed to by an env var — reachable from both local sessions and cloud Routines — then scaffold the autonomic issue pipeline (triage sweep + fix worker Routines) wired to whichever tracker was chosen. Run once per repo before relying on the autonomic pipeline."
 disable-model-invocation: true
 ---
 
 # Setup Chiptus Env
 
-In order: install `setup-matt-pocock-skills` if this repo doesn't have it yet, run it to pick this repo's issue tracker (and the triage labels, domain docs it also configures), offer to relocate `docs/agents/` (and domain docs) to an external folder for repos that can't keep them in-repo, then scaffold the autonomic issue pipeline — `docs/agents/autonomic-issues.md` — templated to that same tracker. The pipeline step reuses the tracker choice `setup-matt-pocock-skills` already made; never ask which tracker twice.
+In order: confirm `setup-matt-pocock-skills` is installed, run it to pick this repo's issue tracker (and the triage labels, domain docs it also configures), offer to relocate `docs/agents/` (and domain docs) to an external folder for repos that can't keep them in-repo, then scaffold the autonomic issue pipeline — `docs/agents/autonomic-issues.md` — templated to that same tracker. The pipeline step reuses the tracker choice `setup-matt-pocock-skills` already made; never ask which tracker twice.
 
 ## Process
 
-### 1. Ensure setup-matt-pocock-skills is installed
+### 1. Check setup-matt-pocock-skills is installed
 
-Check for a `setup-matt-pocock-skills` folder under `.claude/skills/` or `.agents/skills/`. Missing → install it with `npx skills add <setup-matt-pocock-skills package> -s "*" -a claude-code -y --json` (verified flag shape — the agent identifier is `claude-code`, not `claude`; the latter is rejected by the CLI). Safe to re-run if already installed (idempotent; re-reports "installed" rather than erroring). Re-check the folder exists before continuing; if it still doesn't, tell the user the install failed and stop.
+Check for a `setup-matt-pocock-skills` folder under `.claude/skills/` or `.agents/skills/` — locally, or globally per whatever install location the dev is using (ask if unclear). Present → continue to step 2.
+
+Missing → **don't install it yourself.** How and where to install it (per-repo vs. global machine-wide, plugin vs. `npx skills add`) is the dev's call, not this skill's — installing on their behalf risks the wrong scope or clobbering an existing setup. Tell the dev it's missing, give them the install command (`npx skills add <setup-matt-pocock-skills package> -s "*" -a claude-code -y --json` — note the agent identifier is `claude-code`, not `claude`; the latter is rejected by the CLI) or point at the plugin marketplace flow, and stop. Resume at step 2 once they confirm it's installed.
 
 ### 2. Run setup-matt-pocock-skills
 
