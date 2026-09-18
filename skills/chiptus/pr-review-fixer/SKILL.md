@@ -17,19 +17,15 @@ whatever the user approves.
 
 ## Phase 1: Fetch threads
 
-Using the Bash tool yourself (not the auto-exec markdown form, an exclamation
-mark immediately before a backtick-fenced command, which runs unconditionally
-before you get a turn and is exactly what broke the branch below), check once
-whether `gh` is on `PATH`: `command -v gh`. Some session types
-(e.g. a remote/cloud session) have no `gh` CLI and rely on the `mcp__github__*`
-tools instead. Check first, with this command, and pick the right path, rather
-than discovering this by running the fetch script and reacting to its failure.
+Check whether `gh` is on `PATH`: `command -v gh`. Some sessions (e.g. a
+remote/cloud session) have no `gh` CLI and use `mcp__github__*` tools instead.
 
 **`gh` available:** run `${CLAUDE_SKILL_DIR}/scripts/fetch-review-threads.sh` via
 the Bash tool. It resolves the current PR, fetches review threads, review bodies,
 and issue comments, and filters out resolved threads and empty bodies with `jq`
 before any of it reaches you: you only ever see live, unresolved feedback. Output
-is `{threads, reviews, issueComments}`.
+is `{threads, reviews, issueComments}`. If the script fails to resolve a PR for
+the current branch, ask the user for the PR number or URL and retry.
 
 **`gh` missing:** read [`gh-missing.md`](./gh-missing.md)'s "Phase 1" section and
 follow it instead: it reconstructs the same `{threads, reviews, issueComments}`
