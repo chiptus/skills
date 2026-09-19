@@ -30,7 +30,7 @@ On **external**, read [`external-docs.md`](./external-docs.md) for the layout, t
 
 ### 4. Check prerequisites
 
-The autonomic pipeline needs the `triage` skill (fires the rubric) and an `implement` skill or equivalent (does the fix-firing work) already installed — step 1's `npx skills` install covers both if it ran. If either is still missing, tell the user which is missing and stop — nothing to scaffold without them.
+The autonomic pipeline needs three skills already installed: `triage` (fires the rubric), an `implement` skill or equivalent (does the fix-firing work), and `create-pr` (opens the PR at the end of a fix firing — see Fix firing step 6 in `autonomic-issues.md`). Step 1's install covers all three if it ran. If any is still missing, tell the user which and stop — nothing to scaffold without them; a fix firing that reaches its last step with no `create-pr` skill fails at the worst possible point, after doing all the implementation work.
 
 ### 5. Point at the right tracker reference file
 
