@@ -51,7 +51,7 @@ All four hold → `ready-for-agent`. Missing (a)/(b) → `needs-info`. Missing (
 
 1. **Tests for the change**: a test-less PR is acceptable only for pure chores.
 2. **Local checks pass before every push**: this repo's lint and unit-test commands, plus affected integration tests.
-3. **CI green on the PR head**, with review-bot findings addressed.
+3. **CI green on the PR head**, with review-bot findings addressed via the `pr-review-fixer` skill — bot/automated review comments only; a maintainer's own comment on the PR is his, per the repair-before-build guardrail above, never something this gate auto-fixes.
 4. **Self code-review**: run the `code-review` skill against the branch point — both axes, Standards and Spec-vs-issue.
 
 ## Guardrails
