@@ -45,7 +45,8 @@ Replace every `<TRACKER>` / `<TEAM>` / `<owner/repo>` placeholder with this repo
 
 ### 7. Write
 
-- Write the filled draft to `docs/agents/autonomic-issues.md`, plus `docs/agents/references/github.md` and/or `docs/agents/references/linear.md` (only the file(s) for the tracker(s) actually in use) — or, if step 3 relocated docs, to the external root's mirrored paths.
+- If `docs/agents/autonomic-issues.md` already exists, diff it against the filled draft and show the diff before writing — don't template-stamp over repo-specific edits a prior run or a maintainer made directly. Confirm before overwriting; a rejected diff means merging by hand instead of a blind write.
+- Write the filled draft to `docs/agents/autonomic-issues.md`, plus `docs/agents/references/github.md` and/or `docs/agents/references/linear.md` (only the file(s) for the tracker(s) actually in use) — or, if step 3 relocated docs, to the external root's mirrored paths. Repo-specific additions belong in `docs/agents/autonomic-issues-local.md` instead (see that doc's "Repo-specific additions" section) — never in the templated file itself, so this diff step and future refreshes stay clean.
 - Add (or update in place, if already present) an `### Autonomic issue pipeline` entry under the `## Agent skills` block in whichever of `CLAUDE.md` / `AGENTS.md` step 2 edited — plain, no conditional phrasing, per step 3:
 
   ```markdown

@@ -8,6 +8,10 @@ Every tracker-dependent mechanic ("claimed", "in review", "priority order", "iss
 
 This split currently covers exactly the two trackers in use across our repos (GitHub, Linear) — treat it as validated for those two, not as a proven-general shape. Adding a third tracker (GitLab, Jira, local markdown, …) means writing one new `references/<tracker>.md`, following whichever existing file is the closer fit (a flat label-only tracker follows GitHub's shape, a native-status tracker follows Linear's) — not editing the existing two files, and not assuming this note itself still holds unmodified once a third tracker exists.
 
+## Repo-specific additions
+
+This doc is a generic template, refreshed in place by re-running `setup-chiptus-env`. For anything specific to this repo — extra guardrails, real CLI invocation examples, additional rubric mechanics — write `docs/agents/autonomic-issues-local.md` instead of editing here. A refresh of this doc never reads or writes that file; both routines should read it alongside this one when it exists.
+
 ## Shared state: the `agent` marker
 
 In-flight state lives on the tracker as the claimed/in-review markers above; a fresh firing reads them to know where an issue sits in the pipeline. The PR carries the issue link per the table above, so the tracker's own PR integration (native or GitHub's `Closes`) transitions the issue on merge — that happens outside the routine (merging is the maintainer's), so don't treat it as something the fix firing itself performs.
