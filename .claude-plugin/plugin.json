@@ -25,6 +25,7 @@
     "./skills/chiptus/create-pr",
     "./skills/chiptus/pr-review-fixer",
     "./skills/chiptus/rfc-writer",
+    "./skills/chiptus/setup-chiptus-env",
     "./skills/chiptus/what-to-do",
     "./skills/chiptus/write-daily"
   ]
