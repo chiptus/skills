@@ -7,13 +7,17 @@ description: >
   PR comments", "address review feedback", "fix review comments", "what comments are
   on this PR", "respond to code review", or similar. Trigger even if they just say
   "let's fix the PR comments" or "what did reviewers say".
-allowed-tools: Bash(${CLAUDE_SKILL_DIR}/scripts/fetch-review-threads.sh) Bash(${CLAUDE_SKILL_DIR}/scripts/resolve-thread.sh *) Bash(gh pr comment *) Bash(command -v gh) mcp__github__pull_request_read mcp__github__resolve_review_thread mcp__github__add_reply_to_pull_request_comment mcp__github__add_issue_comment
+allowed-tools: Bash(${CLAUDE_SKILL_DIR}/scripts/fetch-review-threads.sh) Bash(${CLAUDE_SKILL_DIR}/scripts/resolve-thread.sh *) Bash(${CLAUDE_SKILL_DIR}/scripts/reply-thread.sh *) Bash(gh issue create *) Bash(gh pr comment *) Bash(command -v gh) mcp__github__pull_request_read mcp__github__resolve_review_thread mcp__github__add_reply_to_pull_request_comment mcp__github__add_issue_comment
 ---
 
 # PR Review Comment Fixer
 
 Fetch unresolved PR review threads, analyze each one, propose fixes, then implement
 whatever the user approves.
+
+**Unattended:** when invoked with `unattended` (a long-running agent with no human
+to ask), read [`unattended.md`](./unattended.md) after Phase 2 and follow it in place
+of Phases 3 and 4.
 
 ## Phase 1: Fetch threads
 

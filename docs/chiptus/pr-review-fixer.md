@@ -27,6 +27,10 @@ Each action-required, suggestion, or revert comment is judged on evidence, not o
 
 The skill recommends fixing the Needed ones and skipping the rest, and leaves skipped threads unresolved until you say otherwise. It also prefers the fix that deletes the thing a comment is about over one that adds machinery around it, since every added line invites the next review comment.
 
+## Unattended mode
+
+Invoke it with `unattended` (a long-running agent, no human to answer) and it skips the approval question and acts on its own verdicts. Needed fixes that are `small` or `medium` are made and their threads resolved. Needed `large` items and Needed pre-existing bugs get a ticket. Everything else is skipped. Every thread that isn't fixed gets a reply with the decision and a short explanation (plus the ticket link), and stays unresolved so a human can overrule it. The run ends with one summary of what was fixed, ticketed, and skipped.
+
 ## When to reach for it
 
 Type `/pr-review-fixer`, or the agent reaches for it automatically when you ask to review PR comments, address review feedback, or respond to code review.
@@ -40,6 +44,7 @@ Before presenting anything, the skill looks for **cascades** — comments that a
 ## It's working if
 
 - Every proposed fix quotes the exact comment it's addressing and carries a verdict naming the failure and how likely it is here.
+- In unattended mode, every skipped or ticketed thread carries a reply with the decision and why.
 - It recommends skipping the Optional, False positive, and Pre-existing comments instead of fixing all of them.
 - Related follow-on comments show up as one grouped cascade, not five separate numbered items.
 - Threads only get resolved after their fix is actually applied — never resolved speculatively.
