@@ -12,9 +12,20 @@ npx skills update pr-review-fixer
 
 ## What it does
 
-`pr-review-fixer` fetches every unresolved review thread and top-level review comment on the current PR, analyzes what each reviewer actually means, proposes a concrete fix for each, and then implements only the ones you approve in free text.
+`pr-review-fixer` fetches every unresolved review thread and top-level review comment on the current PR, analyzes what each reviewer actually means, gives each one a verdict, proposes a concrete fix, and then implements only the ones you approve in free text.
 
-It never resolves a thread it hasn't actually addressed, and it never guesses which comments you want fixed — you always get a numbered list and a chance to say "fix 1, 2, 4" or "skip 3" before anything changes.
+It never resolves a thread it hasn't actually addressed, and it never guesses which comments you want fixed. You always get a numbered list and a chance to say "fix 1, 2, 4" or "skip 3" before anything changes.
+
+## Verdicts
+
+Each action-required, suggestion, or revert comment is judged on evidence, not on the reviewer's tone:
+
+- **Needed**: the skill can name the concrete failure (input, state, or event) and it can happen in this repo's real usage.
+- **Optional**: correct, but the failure is rare, cosmetic, or cheaper to accept.
+- **False positive**: the claim is wrong, proven by reading the code or running the command on a scratch repo.
+- **Pre-existing**: the commented lines are identical on `develop`, so they are skipped here, with a follow-up named if the failure is Needed.
+
+The skill recommends fixing the Needed ones and skipping the rest, and leaves skipped threads unresolved until you say otherwise. It also prefers the fix that deletes the thing a comment is about over one that adds machinery around it, since every added line invites the next review comment.
 
 ## When to reach for it
 
@@ -28,7 +39,8 @@ Before presenting anything, the skill looks for **cascades** — comments that a
 
 ## It's working if
 
-- Every proposed fix quotes the exact comment it's addressing.
+- Every proposed fix quotes the exact comment it's addressing and carries a verdict naming the failure and how likely it is here.
+- It recommends skipping the Optional, False positive, and Pre-existing comments instead of fixing all of them.
 - Related follow-on comments show up as one grouped cascade, not five separate numbered items.
 - Threads only get resolved after their fix is actually applied — never resolved speculatively.
 - Large items are called out as deferred, not silently attempted.
