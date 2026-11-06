@@ -33,16 +33,27 @@ can occur here). Add the ticket link when there is one.
 `gh` available: `${CLAUDE_SKILL_DIR}/scripts/reply-thread.sh <thread-id>` with the
 body on stdin. `gh` missing: [`gh-missing.md`](./gh-missing.md)'s "Phase 4" section.
 Top-level review bodies and issue comments have no thread: answer them in one
-`gh pr comment` listing their decisions.
+`gh pr comment` listing their decisions, headed by the marker `summary`.
 
-A resumed run must not repeat itself: before replying, check the thread's comments for
-your own earlier reply and skip it; before ticketing, search the tracker for the
-thread's URL and reuse the ticket found.
+Replies are unconditional here: nobody is waiting to ask for one, in either path.
+
+## Marker
+
+A resumed run must not repeat itself, so every reply, ticket body, and summary
+comment carries the marker `<!-- pr-review-fixer:<id> -->`, where `<id>` is the
+thread id (or `summary`). The fetch output already holds every comment body, so:
+
+- Skip a thread whose comments already contain its marker: it was decided.
+- Skip the summary comment when an issue comment already contains the `summary` marker.
+- Before creating a ticket, run `gh issue list --state all --search "pr-review-fixer:<id> in:body"`
+  and reuse the ticket found.
 
 ## Ticket
 
 One ticket per distinct bug. Use the repo's tracker (the one its `CLAUDE.md` or
-`AGENTS.md` names); with none named, `gh issue create`. Title states the failure,
+`AGENTS.md` names); with none named, `gh issue create`; `gh` missing, `mcp__github__issue_write`. With no
+ticket tool at all, put the full bug description in the thread reply and say in the
+summary that it needs a ticket. Title states the failure,
 body carries the failing input or state, the file and line, the PR link, and the
 reviewer's quote. Never ticket a comment you fixed in this PR.
 

@@ -7,7 +7,7 @@ description: >
   PR comments", "address review feedback", "fix review comments", "what comments are
   on this PR", "respond to code review", or similar. Trigger even if they just say
   "let's fix the PR comments" or "what did reviewers say".
-allowed-tools: Bash(${CLAUDE_SKILL_DIR}/scripts/fetch-review-threads.sh) Bash(${CLAUDE_SKILL_DIR}/scripts/resolve-thread.sh *) Bash(${CLAUDE_SKILL_DIR}/scripts/reply-thread.sh *) Bash(gh issue create *) Bash(gh pr comment *) Bash(command -v gh) mcp__github__pull_request_read mcp__github__resolve_review_thread mcp__github__add_reply_to_pull_request_comment mcp__github__add_issue_comment
+allowed-tools: Bash(${CLAUDE_SKILL_DIR}/scripts/fetch-review-threads.sh) Bash(${CLAUDE_SKILL_DIR}/scripts/resolve-thread.sh *) Bash(${CLAUDE_SKILL_DIR}/scripts/reply-thread.sh *) Bash(gh issue create *) Bash(gh issue list *) mcp__github__issue_write mcp__github__search_issues Bash(gh pr comment *) Bash(command -v gh) mcp__github__pull_request_read mcp__github__resolve_review_thread mcp__github__add_reply_to_pull_request_comment mcp__github__add_issue_comment
 ---
 
 # PR Review Comment Fixer
@@ -64,9 +64,11 @@ For each unresolved thread:
   - **Optional**: correct, but the failure is rare, cosmetic, or cheaper to accept.
   - **False positive**: the claim is wrong. Prove it first (read the code, or run the
     command on a scratch repo) and quote what you found.
-  - **Pre-existing**: the commented lines are identical on `develop`
-    (`git diff origin/develop -- <file>`). Skip them in this PR; if the failure is
-    Needed, name or file a follow-up issue.
+  - **Pre-existing**: the commented lines are identical on the PR's base branch
+    (`gh pr view --json baseRefName`, then
+    `git diff origin/<base>...HEAD -L<start>,<end>:<file>` shows no change in that
+    range). Unrelated edits elsewhere in the file don't count. Skip them in this PR;
+    if the failure is Needed, name or file a follow-up issue.
 - Prefer the fix that deletes the thing the comment is about over one that adds
   machinery around it: every added line is new surface for the next review.
 - Draft a concrete, specific fix for action-required and revert items. For questions,
