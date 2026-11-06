@@ -23,13 +23,13 @@ Each action-required, suggestion, or revert comment is judged on evidence, not o
 - **Needed**: the skill can name the concrete failure (input, state, or event) and it can happen in this repo's real usage.
 - **Optional**: correct, but the failure is rare, cosmetic, or cheaper to accept.
 - **False positive**: the claim is wrong, proven by reading the code or running the command on a scratch repo.
-- **Pre-existing**: the commented lines are identical on `develop`, so they are skipped here, with a follow-up named if the failure is Needed.
+- **Pre-existing**: the commented lines are identical on the PR's base branch, so they are skipped here, with a follow-up named if the failure is Needed.
 
 The skill recommends fixing the Needed ones and skipping the rest, and leaves skipped threads unresolved until you say otherwise. It also prefers the fix that deletes the thing a comment is about over one that adds machinery around it, since every added line invites the next review comment.
 
 ## Unattended mode
 
-Invoke it with `unattended` (a long-running agent, no human to answer) and it skips the approval question and acts on its own verdicts. Needed fixes that are `small` or `medium` are made and their threads resolved. Needed `large` items and Needed pre-existing bugs get a ticket. Everything else is skipped. Every thread that isn't fixed gets a reply with the decision and a short explanation (plus the ticket link), and stays unresolved so a human can overrule it. The run ends with one summary of what was fixed, ticketed, and skipped.
+Invoke it with `unattended` (a long-running agent, no human to answer) and it skips the approval question and acts on its own verdicts. Needed fixes that are `small` or `medium` are made and their threads resolved. Needed `large` items and Needed pre-existing bugs get a ticket. Everything else is skipped. Questions get an answer and are resolved. Every other thread that isn't fixed gets a reply with the decision and a short explanation (plus the ticket link if needed), and stays unresolved so a human can overrule it. The run ends with one summary of what was fixed, ticketed, and skipped.
 
 ## When to reach for it
 
