@@ -21,6 +21,7 @@ threads_and_reviews=$(gh api graphql -f query='
             path
             line
             startLine
+            diffSide
             comments(first: 50) {
               nodes { author { login } body createdAt }
             }

@@ -64,11 +64,14 @@ For each unresolved thread:
   - **Optional**: correct, but the failure is rare, cosmetic, or cheaper to accept.
   - **False positive**: the claim is wrong. Prove it first (read the code, or run the
     command on a scratch repo) and quote what you found.
-  - **Pre-existing**: the commented lines are identical on the PR's base branch
-    (`gh pr view --json baseRefName`, then
+  - **Pre-existing**: the failure occurs on the PR's base branch too, and the
+    commented lines are unchanged by this PR (`gh pr view --json baseRefName`, then
     `git log origin/<base>..HEAD -s --format=%h -L<start>,<end>:<file>` prints
-    nothing for that range). Unrelated edits elsewhere in the file don't count. Skip them in this PR;
-    if the failure is Needed, name or file a follow-up issue.
+    nothing for that range). Check only `diffSide` `RIGHT` comments this way: a
+    `LEFT` comment is on a deleted line, which this PR changed. A PR that changes a
+    caller can make an unchanged line fail; that failure is Needed. Unrelated edits
+    elsewhere in the file don't count. Skip Pre-existing comments in this PR; if the
+    failure is Needed, name or file a follow-up issue.
 - Prefer the fix that deletes the thing the comment is about over one that adds
   machinery around it: every added line is new surface for the next review.
 - Draft a concrete, specific fix for action-required and revert items. For questions,
