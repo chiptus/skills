@@ -12,9 +12,9 @@ npx skills update pr-review-fixer
 
 ## What it does
 
-`pr-review-fixer` fetches every unresolved review thread and top-level review comment on the current PR, analyzes what each reviewer actually means, gives each actionable comment a verdict, proposes a concrete fix, and then implements only the ones you approve in free text.
+`pr-review-fixer` fetches every unresolved review thread and top-level review comment on the current PR, analyzes what each reviewer actually means, gives each actionable comment a verdict and proposes a concrete fix. In interactive mode, it implements only the fixes you approve in free text.
 
-It never resolves a thread it hasn't actually addressed, and it never guesses which comments you want fixed. You always get a numbered list and a chance to say "fix 1, 2, 4" or "skip 3" before anything changes.
+It never resolves a thread it hasn't actually addressed. In interactive mode, it does not guess which comments you want fixed: you get a numbered list and a chance to say "fix 1, 2, 4" or "skip 3" before anything changes.
 
 ## Verdicts
 
